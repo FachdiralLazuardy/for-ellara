@@ -1,0 +1,1010 @@
+/* ==================================================
+   VARIABLES
+================================================== */
+
+:root {
+  --cream: #fffaf8;
+  --paper: #fffdfb;
+
+  --pink-light: #f9e2e9;
+  --pink: #edb9c9;
+
+  --rose: #c77e99;
+  --rose-dark: #94546e;
+
+  --green: #a9bea5;
+
+  --text: #59454d;
+  --text-light: #8b7079;
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(237, 185, 201, .25),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(169, 190, 165, .18),
+      transparent 25%
+    ),
+    var(--cream);
+
+  color: var(--text);
+
+  font-family: "DM Sans", sans-serif;
+
+  overflow-x: hidden;
+}
+
+
+/* ==================================================
+   OPENING
+================================================== */
+
+.opening {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+}
+
+.opening-inner {
+  width: 100%;
+  max-width: 650px;
+
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+
+  color: var(--rose-dark);
+
+  font-size: .72rem;
+  font-weight: 600;
+
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.opening h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(
+    3rem,
+    9vw,
+    5.5rem
+  );
+
+  font-weight: 400;
+  font-style: italic;
+
+  color: var(--rose-dark);
+}
+
+.opening-text {
+  margin-top: 15px;
+
+  color: var(--text-light);
+
+  font-size: .95rem;
+  line-height: 1.8;
+}
+
+
+/* ==================================================
+   ENVELOPE
+================================================== */
+
+.envelope-wrap {
+  width: 220px;
+  height: 155px;
+
+  margin: 55px auto 35px;
+
+  perspective: 900px;
+}
+
+.envelope {
+  width: 220px;
+  height: 145px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1s ease;
+}
+
+.envelope-back,
+.envelope-front,
+.envelope-flap {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 4px;
+}
+
+.envelope-back {
+  background: #edc5d1;
+
+  box-shadow:
+    0 18px 35px rgba(100, 65, 80, .14);
+}
+
+.envelope-front {
+  z-index: 4;
+
+  background: #f3ccd7;
+
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.envelope-flap {
+  z-index: 5;
+
+  background: #e8b9c8;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 60%
+  );
+
+  transform-origin: top center;
+
+  transition:
+    transform .9s ease;
+}
+
+.envelope-paper {
+  position: absolute;
+
+  z-index: 3;
+
+  width: 80%;
+  height: 75%;
+
+  left: 10%;
+  top: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--paper);
+
+  color: var(--rose-dark);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: .9rem;
+
+  box-shadow:
+    0 4px 12px rgba(80, 50, 60, .08);
+
+  transition:
+    transform .9s ease;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .envelope-paper {
+  transform:
+    translateY(-35px);
+}
+
+
+/* ==================================================
+   OPEN BUTTON
+================================================== */
+
+.open-button,
+.back-button {
+  border: none;
+
+  background: transparent;
+
+  color: var(--rose-dark);
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.open-button {
+  padding: 10px 18px;
+
+  border-bottom:
+    1px solid var(--pink);
+
+  font-size: .9rem;
+}
+
+.open-button:hover,
+.back-button:hover {
+  transform: translateY(-2px);
+}
+
+.open-button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+
+/* ==================================================
+   LETTER SECTION
+================================================== */
+
+.letter-section {
+  display: none;
+
+  min-height: 100vh;
+
+  padding: 50px 20px 70px;
+}
+
+.letter-section.visible {
+  display: block;
+}
+
+.scrapbook {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  position: relative;
+}
+
+
+/* ==================================================
+   DOODLES
+================================================== */
+
+.little-doodle {
+  position: absolute;
+
+  color: var(--rose);
+
+  font-size: 1.2rem;
+
+  pointer-events: none;
+}
+
+.doodle-one {
+  top: 20px;
+  left: 3%;
+  transform: rotate(-15deg);
+}
+
+.doodle-two {
+  top: 80px;
+  right: 5%;
+  color: var(--green);
+  transform: rotate(15deg);
+}
+
+.doodle-three {
+  bottom: 160px;
+  left: 8%;
+  transform: rotate(12deg);
+}
+
+
+/* ==================================================
+   MAIN LAYOUT
+================================================== */
+
+.letter-layout {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  gap: 28px;
+}
+
+
+/* ==================================================
+   LETTER PAPER
+================================================== */
+
+.letter {
+  width: min(620px, 100%);
+
+  flex-shrink: 1;
+
+  padding:
+    48px
+    48px
+    55px;
+
+  position: relative;
+
+  background: var(--paper);
+
+  box-shadow:
+    0 18px 45px
+    rgba(80, 50, 60, .09);
+
+  border-radius: 2px;
+
+  transform:
+    rotate(-.4deg);
+}
+
+.letter::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  border:
+    1px solid
+    rgba(199, 126, 153, .10);
+
+  pointer-events: none;
+}
+
+.letter-label {
+  margin-bottom: 25px;
+
+  color: var(--rose);
+
+  font-size: .65rem;
+
+  font-weight: 600;
+
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+.letter h2 {
+  margin-bottom: 28px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 2rem;
+
+  font-weight: 400;
+
+  color: var(--rose-dark);
+}
+
+.letter-content p {
+  min-height: 1em;
+
+  margin-bottom: 22px;
+
+  color: var(--text);
+
+  font-size: .94rem;
+
+  line-height: 1.95;
+
+  letter-spacing: .01em;
+
+  opacity: 0;
+
+  transition:
+    opacity .3s ease;
+}
+
+.letter-content p.visible {
+  opacity: 1;
+}
+
+.typing-cursor::after {
+  content: "|";
+
+  margin-left: 2px;
+
+  color: var(--rose);
+
+  animation:
+    blink .8s infinite;
+}
+
+@keyframes blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* ==================================================
+   SIGNATURE
+================================================== */
+
+.signature {
+  margin-top: 35px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  opacity: 0;
+
+  transform:
+    translateY(8px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.signature.visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+.signature span {
+  color: var(--text-light);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-style: italic;
+
+  font-size: .95rem;
+}
+
+.signature strong {
+  color: var(--rose-dark);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 1.35rem;
+
+  font-weight: 400;
+}
+
+
+/* ==================================================
+   SIDE DECOR
+================================================== */
+
+.side-decor {
+  width: 135px;
+
+  flex: 0 0 135px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  /*
+    Polaroid stays at the upper side.
+  */
+  padding-top: 145px;
+}
+
+
+/* ==================================================
+   POLAROID
+================================================== */
+
+.polaroid {
+  width: 120px;
+
+  padding:
+    8px
+    8px
+    13px;
+
+  background: white;
+
+  transform:
+    rotate(5deg);
+
+  box-shadow:
+    0 10px 24px
+    rgba(70, 45, 55, .11);
+}
+
+.photo {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5dce4,
+      #d8e1d3
+    );
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.polaroid span {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #765e66;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: .58rem;
+
+  text-align: center;
+}
+
+
+/* ==================================================
+   BOUQUET IMAGE
+================================================== */
+
+.bouquet {
+  width: 145px;
+
+  /*
+    Increased from the previous 8px.
+    This creates a clear gap from the polaroid.
+  */
+  margin-top: 32px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  transform:
+    rotate(-4deg);
+}
+
+.bouquet img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 9px 10px
+      rgba(70, 45, 55, .13)
+    );
+}
+
+
+/* ==================================================
+   MUSIC AREA
+================================================== */
+
+.music-area {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  margin-top: 20px;
+}
+
+.music-player {
+  width: min(360px, 92vw);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding:
+    10px 12px;
+
+  background:
+    rgba(255, 255, 255, .82);
+
+  border:
+    1px solid
+    rgba(199, 126, 153, .15);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(100, 65, 80, .1);
+
+  opacity: .48;
+
+  transition:
+    opacity .5s ease,
+    transform .3s ease;
+}
+
+.music-player.ready {
+  opacity: 1;
+}
+
+.music-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 12px;
+
+  background: var(--pink-light);
+
+  color: var(--rose-dark);
+
+  font-size: 1.1rem;
+}
+
+.music-info {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 3px;
+}
+
+.music-small {
+  color: var(--text-light);
+
+  font-size: .6rem;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+}
+
+.music-info strong {
+  color: var(--text);
+
+  font-size: .8rem;
+
+  font-weight: 500;
+}
+
+.progress {
+  width: 100%;
+
+  height: 3px;
+
+  margin-top: 4px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background:
+    rgba(199, 126, 153, .16);
+}
+
+.progress-bar {
+  width: 0%;
+
+  height: 100%;
+
+  background: var(--rose);
+
+  transition:
+    width .15s linear;
+}
+
+.music-play {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  background: var(--rose-dark);
+
+  color: white;
+
+  font-size: .75rem;
+
+  transition:
+    transform .2s ease;
+}
+
+.music-play:hover:not(:disabled) {
+  transform:
+    scale(1.06);
+}
+
+.music-play:disabled {
+  cursor: default;
+
+  opacity: .35;
+}
+
+.music-note {
+  margin-top: 10px;
+
+  color: var(--text-light);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: .75rem;
+
+  font-style: italic;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.back-button {
+  display: block;
+
+  margin: 35px auto 0;
+
+  font-size: .8rem;
+
+  color: var(--text-light);
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .opening {
+    padding:
+      30px 18px;
+  }
+
+  .envelope-wrap {
+    margin-top: 45px;
+  }
+
+
+  .letter-section {
+    padding:
+      35px 12px 55px;
+  }
+
+
+  /*
+    IMPORTANT:
+    Letter and decoration stay SIDE BY SIDE.
+  */
+
+  .letter-layout {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 8px;
+  }
+
+
+  .letter {
+    width:
+      calc(100% - 86px);
+
+    flex:
+      1 1 auto;
+
+    min-width: 0;
+
+    padding:
+      34px 20px 40px;
+  }
+
+
+  .letter h2 {
+    font-size: 1.55rem;
+  }
+
+  .letter-content p {
+    font-size: .84rem;
+
+    line-height: 1.85;
+  }
+
+
+  .side-decor {
+    width: 78px;
+
+    flex:
+      0 0 78px;
+
+    padding-top: 125px;
+  }
+
+
+  .polaroid {
+    width: 78px;
+
+    padding:
+      5px
+      5px
+      9px;
+  }
+
+
+  .polaroid span {
+    margin-top: 6px;
+
+    font-size: .4rem;
+  }
+
+
+  /*
+    Bigger gap than before,
+    so bouquet isn't touching polaroid.
+  */
+
+  .bouquet {
+    width: 88px;
+
+    margin-top: 28px;
+  }
+
+
+  .music-area {
+    margin-top: 18px;
+  }
+
+}
+
+
+/* ==================================================
+   VERY SMALL PHONES
+================================================== */
+
+@media (max-width: 380px) {
+
+  .letter-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+
+  .letter-layout {
+    gap: 6px;
+  }
+
+
+  .side-decor {
+    width: 69px;
+
+    flex-basis: 69px;
+
+    padding-top: 120px;
+  }
+
+
+  .letter {
+    width:
+      calc(100% - 75px);
+
+    padding:
+      30px 16px 35px;
+  }
+
+
+  .polaroid {
+    width: 69px;
+  }
+
+
+  .bouquet {
+    width: 76px;
+
+    margin-top: 25px;
+  }
+
+
+  .letter h2 {
+    font-size: 1.4rem;
+  }
+
+
+  .letter-content p {
+    font-size: .8rem;
+  }
+
+}
